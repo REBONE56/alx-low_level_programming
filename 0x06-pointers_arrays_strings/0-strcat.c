@@ -1,29 +1,34 @@
-#include "main.h"
-/**
- * _strcat - concatenates two strings
- * @dest: input value
- * @src: input value
- *
- * Return: void
- */
-char *_strcat(char *dest, char *src)
-{
-	int i;
-	int j;
+#include <stdio.h>
 
-	i = 0;
-	while (dest[i] != '\0')
-	{
-		i++;
-	}
-	j = 0;
-	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
+char *_strcat(char *dest, char *src) {
+    // Find the end of the destination string
+    char *dest_end = dest;
+    while (*dest_end != '\0') {
+        dest_end++;
+    }
 
-	dest[i] = '\0';
-	return (dest);
+    // Append characters from src to dest
+    while (*src != '\0') {
+        *dest_end = *src;
+        dest_end++;
+        src++;
+    }
+
+    // Add the terminating null byte
+    *dest_end = '\0';
+
+    return dest;
+}
+
+int main() {
+    char dest[50] = "Hello, ";
+    char src[] = "world!";
+
+    printf("Before concatenation: %s\n", dest);
+
+    _strcat(dest, src);
+
+    printf("After concatenation: %s\n", dest);
+
+    return 0;
 }
